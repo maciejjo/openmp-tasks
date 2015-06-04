@@ -1,0 +1,10 @@
+# Ignore compilation dirs
+ex1/obj/
+ex1/bin/
+ex1/dep/
+ex2/obj/
+ex2/bin/
+ex2/dep/
+
+# Ignore vim files (if any)
+*~
