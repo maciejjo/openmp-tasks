@@ -3,11 +3,17 @@ import ycm_core
 
 flags = [
 '-fopenmp'
+'-pthread'
 '-Wall',
 '-Wextra',
 '-pedantic',
+'-std=c99',
 '-O2',
 '-g',
+'-isystem',
+'/usr/include/'
+'-isystem',
+'/usr/lib/clang/3.5.0/include'
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
