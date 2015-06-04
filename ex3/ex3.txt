@@ -1,0 +1,61 @@
+Zadanie 3
+
+Pomiar prędkości przetwarzania w funkcji użytej liczby wątków/procesorów dla
+różnych wersji kodu – obserwacja kosztów współdzielenia danych między wątkami. 
+ 
+1. Wykorzystać sekwencyjny kod wyznaczenia wartości liczby Pi metodą całkowania
+(serial_pi.cpp). 
+
+2. Dokonać pomiaru czasu przetwarzania za pomocą funkcji clock()
+(#include<time.h> , pomiar czasu w milisekundach) lub rdtsc.
+ 
+3. Dokonać podziału pracy wyznaczania liczby Pi pomiędzy równoległe wątki
+poprzez dyrektywę podziału pracy #pragma omp for.
+
+	* przeanalizować które zmienne są prywatne, a które współdzielone, 
+	* zaobserwować wynik obliczeń (jakie mogą być przyczyny niepoprawnego
+	  wyniku?) 
+	* zapisać czas i liczbę iteracji.
+	* Sprawdzić liczbę pracujących wątków oraz zrównoważenie ich pracy za
+	  pomocą programu CodeXXL w trybie "thread profiling". 
+
+Przygotować kod w następujących wariantach:
+
+--> v1 <--
+Zapewnić atomowość uaktualnienia współdzielonej sumy za pomocą #pragma omp
+atomic
+ 
+	* zaobserwować wynik obliczeń, 
+	* zapisać czas trwania obliczeń w funkcji liczby iteracji, 
+	* jaki jest czas obliczeń w stosunku do przetwarzania sekwencyjnego? 
+
+--> v2 <--
+Zrealizować scalenie wartości w lokalnych sumach częściowych za pomocą klauzuli
+reduction dyrektywy #pragma omp for
+
+	* zaobserwować wynik obliczeń, 
+	* zapisać czas trwania obliczeń w funkcji liczby iteracji, 
+	* jaką wielkość przyspieszenia obliczeń zaobserwowano? 
+
+--> v3 <--
+Zaimplementować sumy częściowe w ramach współdzielonej tablicy zmiennych
+typu double – każdy wątek modyfikuje jeden element tablicy zapisując w nim
+swoją sumę częściową – modyfikowane elementy są sąsiednimi elementami tablicy.
+Zaobserwować zjawisko nieprawdziwego współdzielenia (ang. false sharing)
+polegającego na unieważnianiu linii pamięci w cache procesora poprzez zapis
+sąsiedniego (do wykorzystywanego przez bieżący wątek) elementu linii cache.
+
+	* obserwacja polega na porównaniu czasu obliczeń dla kodu uruchamianego
+	  na 4 wątkach - 4 procesorach i sekwencyjnie, 
+	* jaką wielkość przyspieszenia obliczeń zaobserwowano? 
+ 
+Eksperyment z 3 wersją kodu – wyznaczanie długości linii cache 
+
+Uruchamianie kodu przy użyciu 2 wątków (kompilacja w trybie DEBUG lub
+deklaracja z dyrektywą volatile). W kolejnych iteracjach wielokrotnego
+wyznaczania Pi zmiana położenia o jedno słowo (względem stałego początku
+tablicy) 2 słów wykorzystywanych przez wątki. 
+
+	* wyznaczyć i zapisać czasy obliczeń dla kolejnych 20 położeń początku
+	  wykorzystywanego obszaru tablicy,
+	* wyjaśnić uzyskane wyniki. 
