@@ -8,3 +8,6 @@ ex2/dep/
 
 # Ignore vim files (if any)
 *~
+
+# Ignore compiled python
+*.pyc
