@@ -1,7 +1,7 @@
 CC	= clang
 TARGET	= ex2
-CFLAGS	= -Wall -Wextra -pedantic -g -fopenmp -O2
-LFLAGS	= -lomp
+CFLAGS	= -Wall -Wextra -pedantic -g -fopenmp -O2 -std=c99 -pthread
+LFLAGS	= -lomp -pthread
 SRCDIR	= src
 OBJDIR	= obj
 BINDIR	= bin
