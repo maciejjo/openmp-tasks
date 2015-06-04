@@ -1,0 +1,11 @@
+Podstawy OpenMP - Koszty współdzielenia danych
+
+Cele:
+* pomiar czasu przetwarzania równoległego
+* uruchomienie prostych progamów przy wykorzystaniu określonej wprost liczby wątków
+* obserwacja kosztów współdzielenia danych
+* zastosowanie funkcji OMP: omp_set_num_threads() i omp_get_thread_num()
+* zastosowanie dyrektyw OMP: #pragma omp parallel, for, atomic, reduction
+* zastosowanie funkcji WinAPI SetThreadAffinityMask(), GetCurrentThread() - może być pod Linuksem
+
+
