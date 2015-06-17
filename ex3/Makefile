@@ -1,7 +1,7 @@
-CC	= clang
+CC	= gcc
 TARGET	= ex3
-CFLAGS	= -Wall -Wextra -pedantic -std=c99 -g -O2 -fopenmp -pthread
-LFLAGS	= -lomp -pthread
+CFLAGS	= -Wall -Wextra -pedantic -std=c99 -g -O0 -fopenmp -pthread
+LFLAGS	= -pthread -fopenmp
 SRCDIR	= src
 OBJDIR	= obj
 BINDIR	= bin
