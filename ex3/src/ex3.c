@@ -218,7 +218,7 @@ double compute_pi_parallel_v3(const unsigned long long num_steps, unsigned int n
 
 	omp_set_num_threads(num_threads);
 
-	if((sum_partial = calloc(num_threads, sizeof(float))) == NULL) {
+	if((sum_partial = calloc(num_threads, sizeof(double))) == NULL) {
 		perror("calloc");
 		exit(EXIT_FAILURE);
 	}
@@ -244,6 +244,8 @@ double compute_pi_parallel_v3(const unsigned long long num_steps, unsigned int n
 		}
 
 	}
+
+	free((double *) sum_partial);
 
 	for(i = 0; i < num_threads; i++)
 		sum += sum_partial[i];
