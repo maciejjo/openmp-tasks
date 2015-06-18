@@ -9,9 +9,10 @@ flags = [
 '-pedantic',
 '-std=c99',
 '-g',
-'-O2',
+'-O0',
 '-isystem/usr/include/',
 '-isystem/usr/lib/clang/3.5.0/include',
+'-Iheaders'
 ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the

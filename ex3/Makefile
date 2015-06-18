@@ -1,6 +1,6 @@
 CC	= gcc
 TARGET	= ex3
-CFLAGS	= -Wall -Wextra -pedantic -std=c99 -g -O0 -fopenmp -pthread
+CFLAGS	= -Wall -Wextra -pedantic -std=c99 -g -O0 -fopenmp -pthread -Iheaders
 LFLAGS	= -pthread -fopenmp
 SRCDIR	= src
 OBJDIR	= obj
