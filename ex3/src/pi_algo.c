@@ -216,11 +216,11 @@ double compute_pi_parallel_v3(const unsigned long long num_steps, unsigned int n
 
 	}
 
-	free((double *) sum_partial);
 
 	for(i = 0; i < num_threads; i++)
 		sum += sum_partial[i];
 
+	free((double *) sum_partial);
 	return sum * step;
 
 }
