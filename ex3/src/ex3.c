@@ -17,28 +17,8 @@
 
 #include "../headers/pi_algo.h"
 
-#define NUM_STEPS 10000L
+#define NUM_STEPS 100000000L
 #define NUM_THREADS 4
- 
-#if 0
-/*
- *
- * From Intel® 64 and IA-32 Architectures Software Developer’s Manual:
- *
- * RDTSC — Read Time-Stamp Counter
- *
- * Opcode  Instruction  Op/En  64-Bit Mode  Compat/Leg Mode  Description
- * 0F 31   RDTSC        NP     Valid        Valid            Read time-stamp counter into EDX:EAX.
- * 
- */
-
-static __inline__ unsigned long long rdtsc(void)
-{
-    unsigned long long int x;
-    __asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));
-    return x;
-}
-#endif
 
 struct timespec get_timespec_diff(struct timespec start, struct timespec end)
 {
@@ -57,18 +37,11 @@ struct timespec get_timespec_diff(struct timespec start, struct timespec end)
 int main()
 {
 	printf("ex3\n");
+	printf("\n");
 
 	double pi;
 	unsigned int i;
 	struct timespec ts_start, ts_end, ts_diff;
-	/*
-	double (* pi_algos[])(const unsigned long long num_steps, unsigned int num_threads) = {
-		compute_pi_serial,
-		compute_pi_parallel_v1,
-		compute_pi_parallel_v2,
-		compute_pi_parallel_v3
-	};
-	*/
 
 	struct pi_algo algos[] = {
 		{
@@ -79,17 +52,17 @@ int main()
 		{
 			.function = compute_pi_parallel_v1,
 			.name = "Parallel Pi computation v1",
-			.description = "Parallelism with #pragma omp atomic on shared sum",
+			.description = "#pragma omp atomic on shared sum",
 		},
 		{
 			.function = compute_pi_parallel_v2,
 			.name = "Parallel Pi computation v2",
-			.description = "Parallelism with #pragma omp reduction on sum",
+			.description = "#pragma omp reduction on sum",
 		},
 		{
 			.function = compute_pi_parallel_v3,
 			.name = "Parallel Pi computation v3",
-			.description = "Parallelism with partial sums array per thread",
+			.description = "partial sums array per thread",
 		},
 	};
 
@@ -100,20 +73,21 @@ int main()
 
 		if(clock_gettime(CLOCK_REALTIME, &ts_start) == -1) {
 			perror("clock gettime");
-			exit( EXIT_FAILURE );
+			exit(EXIT_FAILURE);
 		}
 
 		pi = algos[i].function(NUM_STEPS, NUM_THREADS);
 
 		if(clock_gettime(CLOCK_REALTIME, &ts_end) == -1) {
 			perror("clock gettime");
-			exit( EXIT_FAILURE );
+			exit(EXIT_FAILURE);
 		}
 
 		ts_diff = get_timespec_diff(ts_start, ts_end);
 
 		printf("Pi = %15.12f, computed in %ld.%09ld  seconds\n", pi,
 				ts_diff.tv_sec, ts_diff.tv_nsec);
+		printf("\n");
 
 	}
 
