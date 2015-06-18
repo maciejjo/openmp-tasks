@@ -16,3 +16,4 @@ double compute_pi_parallel_v3(const unsigned long long num_steps, unsigned int n
 double compute_pi_parallel_v4(const unsigned long long num_steps, unsigned int num_threads);
 
 #endif
+

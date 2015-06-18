@@ -1,6 +1,6 @@
 /*
  * ex3
- * 
+ *
  */
 
 #define _GNU_SOURCE

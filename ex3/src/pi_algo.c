@@ -25,7 +25,7 @@ static int bind_omp_thread_to_one_cpu()
 	/*
 	unsigned int i;
 	*/
-	
+
 	omp_thread_num = omp_get_thread_num();
 	pt_handle = pthread_self();
 
@@ -88,9 +88,9 @@ double compute_pi_serial(const unsigned long long num_steps, unsigned int num_th
 }
 
 /* * *
- * 
+ *
  * compute_pi_parallel_v1
- * 
+ *
  * Zapewnić atomowość uaktualnienia współdzielonej sumy za pomocą #pragma omp
  * atomic
  *
@@ -131,9 +131,9 @@ double compute_pi_parallel_v1(const unsigned long long num_steps, unsigned int n
 }
 
 /* * *
- * 
+ *
  * compute_pi_parallel_v2
- * 
+ *
  * Zapewnić atomowość uaktualnienia współdzielonej sumy za pomocą #pragma omp
  * atomic
  *
@@ -171,9 +171,9 @@ double compute_pi_parallel_v2(const unsigned long long num_steps, unsigned int n
 }
 
 /* * *
- * 
+ *
  * compute_pi_parallel_v3
- * 
+ *
  * Zapewnić atomowość uaktualnienia współdzielonej sumy za pomocą #pragma omp
  * atomic
  *
