@@ -6,6 +6,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <unistd.h>
+#include <stdint.h>
+
+int is_cpu_hyperthreaded()
+{
+	uint32_t registers[4];
+
+	__asm__ __volatile__ ("cpuid " :
+			      "=a" (registers[0]),
+			      "=b" (registers[1]),
+			      "=c" (registers[2]),
+			      "=d" (registers[3])
+			      : "a" (1), "c" (0));
+
+	int hyperthreading = registers[3] & (1 << 28);
+
+	if(hyperthreading)
+		return 1;
+
+	else
+		return 0;
+}
+
 
 /*
  * bind_omp_thread_to_one_cpu()

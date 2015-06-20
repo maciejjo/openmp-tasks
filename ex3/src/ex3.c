@@ -9,8 +9,6 @@
 #include <stdlib.h>
 
 #include <sched.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 #include <omp.h>
 #include <pthread.h>
