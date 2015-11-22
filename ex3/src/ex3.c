@@ -18,20 +18,6 @@
 #define NUM_STEPS 100000000L
 #define NUM_THREADS 4
 
-struct timespec get_timespec_diff(struct timespec start, struct timespec end)
-{
-	struct timespec temp;
-
-	if ((end.tv_nsec-start.tv_nsec)<0) {
-		temp.tv_sec = end.tv_sec-start.tv_sec-1;
-		temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
-	} else {
-		temp.tv_sec = end.tv_sec-start.tv_sec;
-		temp.tv_nsec = end.tv_nsec-start.tv_nsec;
-	}
-	return temp;
-}
-
 int main()
 {
 	printf("ex3\n");
@@ -88,6 +74,9 @@ int main()
 		printf("\n");
 
 	}
+
+	printf("Compute pi and detect false sharing - sizeof(double) = %lu\n", sizeof(double));
+	compute_pi_with_false_sharing(NUM_STEPS, NUM_THREADS);
 
 	return EXIT_SUCCESS;
 

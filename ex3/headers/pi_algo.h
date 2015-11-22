@@ -13,7 +13,10 @@ double compute_pi_serial(const unsigned long long num_steps, unsigned int num_th
 double compute_pi_parallel_v1(const unsigned long long num_steps, unsigned int num_threads);
 double compute_pi_parallel_v2(const unsigned long long num_steps, unsigned int num_threads);
 double compute_pi_parallel_v3(const unsigned long long num_steps, unsigned int num_threads);
-double compute_pi_parallel_v4(const unsigned long long num_steps, unsigned int num_threads);
+
+double compute_pi_with_false_sharing(const unsigned long long num_steps, unsigned int num_threads);
+
+struct timespec get_timespec_diff(struct timespec start, struct timespec end);
 
 #endif
 
